@@ -1,7 +1,7 @@
 var startButtonEl = document.querySelector("#start-quiz");
 var quizEl = document.querySelector("#quiz-body");
 var currentQuestionIndex = -1;
-
+var highScores = [];
 var quizQuestions = [
     {
         question: "Commonly used data types do NOT include", 
@@ -37,7 +37,6 @@ var startButtonCommence = function() {
     startTimer();
     renderNextQuestion();
 };
-
 
 function startTimer() {
     timeLeft = 75;
@@ -78,8 +77,69 @@ function answerChecker(button) {
 };
 
 function renderUserScore() {
+    var nameInputEl = document.createElement("div");
+    var userNameInput = document.createElement("input");
+    userNameInput.type = "text";
+    var submitHighScore = document.createElement("button");
+    userNameInput.setAttribute("id", "name-input-value");
+    submitHighScore.setAttribute("id", "submit-high-score");
     quizEl.innerHTML = "<h2>Your Score Is:</h2><h1>" + timeLeft + "</h1>"
+    nameInputEl.innerHTML = "<h3>Enter Your Name to the Leaderboard!</h3>"
+    submitHighScore.innerHTML = "submit score!"
+    quizEl.appendChild(nameInputEl);
+    nameInputEl.appendChild(userNameInput);
+    nameInputEl.appendChild(submitHighScore);
+    document.getElementById("submit-high-score").onclick = function() {
+        submitUserScore();
+        renderHighScores();
+    }
+};
+
+function submitUserScore() {
+        var highScoreName = document.getElementById("name-input-value").value;
+        var completeHighScore = {
+            name: highScoreName,
+            score: timeLeft
+        }
+        highScores.push(completeHighScore);
+        localStorage.setItem("scores", JSON.stringify(highScores));
+        console.log(highScores);
+};
+
+function renderMainPage() {
+    currentQuestionIndex = -1;
+    timeLeft = 75;
+    var startButton = document.createElement("button");
+    startButton.innerHTML = "Start Quiz";
+    quizEl.innerHTML = "<h1>Coding Quiz Challenge</h1><p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>"
+    quizEl.appendChild(startButton);
+    startButton.onclick = startButtonCommence;
+    console.log(currentQuestionIndex)
+    console.log(timeLeft)
 }
+
+function renderHighScores() {
+    var returnButton = document.createElement("button");
+    var clearScoresButton = document.createElement("button");
+    var scoreList = document.createElement("ol");
+    for (let index = 0; index < highScores.length; index++) {
+        var scoreItem = document.createElement("li");
+        scoreItem.innerHTML = JSON.stringify(highScores[index]);
+        scoreList.appendChild(scoreItem);
+    }
+    document.getElementById("timer").innerHTML = "";
+    document.getElementById("feedback").innerHTML = "";
+    quizEl.innerHTML = "<h1>High Scores<h1>";
+    returnButton.innerHTML = "Go Back";
+    clearScoresButton.innerHTML = "Clear High Scores";
+    quizEl.appendChild(scoreList);
+    quizEl.appendChild(returnButton);
+    quizEl.appendChild(clearScoresButton);
+    returnButton.onclick = function() {
+        renderMainPage();
+    }
+};
+
 
 function renderNextQuestion() {
     currentQuestionIndex++

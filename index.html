@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style.css">
     <title>Code Quiz</title>
 </head>
 <body>
@@ -10,14 +11,16 @@
         <a href="">View High Scores</a>
         <div class="timer" id="timer"></div>
     </header>
-    <main id="quiz-body">
+    <main id="quiz-body" class="quiz-body">
         <h1>Coding Quiz Challenge</h1>
         <p>
-            Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!
+            Try to answer the following code-related questions within the time limit. 
+            <br>
+            Keep in mind that incorrect answers will penalize your score/time by ten seconds!
         </p>
         <button id="start-quiz" class="button">Start Quiz</button>
     </main>
-    <div id="feedback"></div>
+    <div id="feedback" class="feedback"></div>
     <script src="./assets/script.js"></script>
 </body>
 </html>

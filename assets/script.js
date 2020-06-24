@@ -4,32 +4,32 @@ var currentQuestionIndex = -1;
 var highScores = [];
 var quizQuestions = [
     {
-        question: "Commonly used data types do NOT include", 
+        question: "Commonly used data types do NOT include:", 
         correct: "Alerts", 
         wrong1: "Strings",
         wrong2: "Booleans",
         wrong3: "Numbers"
     },
     {
-        question: "Commonly used data types do NOT include", 
-        correct: "Alerts", 
-        wrong1: "Strings",
-        wrong2: "Booleans",
-        wrong3: "Numbers"
+        question: "A very useful tool used during development and debugging for printing content to the debugger is:", 
+        correct: "console.log", 
+        wrong1: "JavaScript",
+        wrong2: "for loops",
+        wrong3: "terminal/bash"
     },
     {
-        question: "Commonly used data types do NOT include", 
-        correct: "Alerts", 
-        wrong1: "Strings",
-        wrong2: "Booleans",
-        wrong3: "Numbers"
+        question: "String values must be enclosed within _____ when being assigned to variables.", 
+        correct: "Quotes", 
+        wrong1: "Commas",
+        wrong2: "Curly Brackets",
+        wrong3: "Parentheses"
     },
     {
-        question: "Commonly used data types do NOT include", 
-        correct: "Alerts", 
-        wrong1: "Strings",
+        question: "Arrays in JavaScript can be used to store:", 
+        correct: "All of These.", 
+        wrong1: "Other Arrays",
         wrong2: "Booleans",
-        wrong3: "Numbers"
+        wrong3: "Numbers and Strings"
     }
 ];
 
@@ -111,7 +111,7 @@ function renderMainPage() {
     timeLeft = 75;
     var startButton = document.createElement("button");
     startButton.innerHTML = "Start Quiz";
-    quizEl.innerHTML = "<h1>Coding Quiz Challenge</h1><p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>"
+    quizEl.innerHTML = "<h1>Coding Quiz Challenge</h1><p>Try to answer the following code-related questions within the time limit.<br> Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>"
     quizEl.appendChild(startButton);
     startButton.onclick = startButtonCommence;
     console.log(currentQuestionIndex)
@@ -150,7 +150,7 @@ function renderNextQuestion() {
     var answerButtonEl2 = document.createElement("button");
     var answerButtonEl3 = document.createElement("button");
     var answerButtonEl4 = document.createElement("button");
-    console.dir(quizQuestions[currentQuestionIndex].correct);
+    buttonContainerEl.setAttribute("class", "button-container");
     var answerOrderHandler = [
         quizQuestions[currentQuestionIndex].correct,
         quizQuestions[currentQuestionIndex].wrong1,
